@@ -5,7 +5,7 @@ public abstract class AbstractAnimals {
 	All animals consume food the same way
 	Each animal is assigned a unique number, a name, and year discovered regardless of classification.
 	*/
-	private static int maxId = 0;
+	private static int maxId = -1;
 	protected int id;
 	protected int year;
 	protected String name; 

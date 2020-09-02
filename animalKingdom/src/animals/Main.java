@@ -4,6 +4,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Main {
+
+	public static List<AbstractAnimals> filterAnimals(List<AbstractAnimals> animalList, Check tester) {		
+		List<AbstractAnimals> tempList = new ArrayList<>();
+
+		for(AbstractAnimals v: animalList) {
+			if(tester.test(v)) {
+				tempList.add(v);
+			}
+		}
+		return tempList;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Animal Kingdom is up and running");
 
@@ -93,6 +105,43 @@ public class Main {
 		animalList.add(catfish);
 		animalList.add(perch);
 
+		// System.out.println(animalList); 
+
+		// *** List all the animals in descending order by year named ***
+		animalList.sort((v1, v2) -> v2.year - v1.year);
 		System.out.println(animalList);
+		System.out.println(); 
+
+		// *** List all the animals alphabetically ***
+		animalList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+		System.out.println(animalList);
+		System.out.println(); 
+
+		// *** List all the animals order by how they move ***
+		animalList.sort((v1, v2) -> v1.move().compareTo(v2.move()));
+		System.out.println(animalList);
+		System.out.println(); 
+
+		// *** List only those animals the breath with lungs ***
+		List<AbstractAnimals> animalsWithLungs = filterAnimals(animalList, v -> v.breath() == "Lungs");
+		System.out.println(animalsWithLungs);
+		System.out.println(); 
+
+		// *** List only those animals that breath with lungs and were named in 1758 ***
+		List<AbstractAnimals> oldAnimalsWithLungs = filterAnimals(animalsWithLungs, v -> v.getYear() == 1758);
+		System.out.println(oldAnimalsWithLungs);
+		System.out.println(); 
+
+		// *** List only those animals that lay eggs and breath with lungs ***
+		List<AbstractAnimals> animalsEggs = filterAnimals(animalList, v -> v.reproduce() == "Eggs");
+		List<AbstractAnimals> animalsWithLungsEggs = filterAnimals(animalsEggs, v -> v.breath() == "Lungs");
+		System.out.println(animalsWithLungsEggs);
+		System.out.println(); 
+
+		// *** List alphabetically only those animals that were named in 1758 ***
+		List<AbstractAnimals> animalsOld = filterAnimals(animalList, v -> v.getYear() == 1758);
+		animalsOld.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+		System.out.println(animalsOld);
+		System.out.println(); 
 	}
 }

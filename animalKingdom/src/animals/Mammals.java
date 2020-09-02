@@ -22,10 +22,4 @@ public class Mammals extends AbstractAnimals {
 		return "Lungs";
 	}
 
-	// Zebra live births walk lungs 1778
-
-	// @Override
-	// public String toString() {
-	// 	return name + giveBirth() + getPath() + year;
-	// }
 }
